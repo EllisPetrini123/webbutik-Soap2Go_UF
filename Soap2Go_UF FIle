@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Min Webbutik</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+    header {
+      background: #222;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 15px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .product h2 {
+      margin: 10px 0;
+    }
+    .product p {
+      color: #555;
+    }
+    .cart {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 10px;
+      width: 220px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    button {
+      background: #222;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🛒 Min Webbutik</h1>
+  </header>
+
+  <div class="products">
+    <div class="product">
+      <h2>T-shirt</h2>
+      <p>Pris: 199 kr</p>
+      <button onclick="addToCart('T-shirt', 199)">Lägg i varukorgen</button>
+    </div>
+    <div class="product">
+      <h2>Hoodie</h2>
+      <p>Pris: 399 kr</p>
+      <button onclick="addToCart('Hoodie', 399)">Lägg i varukorgen</button>
+    </div>
+    <div class="product">
+      <h2>Keps</h2>
+      <p>Pris: 149 kr</p>
+      <button onclick="addToCart('Keps', 149)">Lägg i varukorgen</button>
+    </div>
+  </div>
+
+  <div class="cart">
+    <h3>Varukorg</h3>
+    <ul id="cart-items"></ul>
+    <p><strong>Total:</strong> <span id="total">0</span> kr</p>
+  </div>
+
+  <script>
+    let total = 0;
+    const cartItems = document.getElementById("cart-items");
+    const totalDisplay = document.getElementById("total");
+
+    function addToCart(product, price) {
+      const li = document.createElement("li");
+      li.textContent = product + " - " + price + " kr";
+      cartItems.appendChild(li);
+      total += price;
+      totalDisplay.textContent = total;
+    }
+  </script>
+
+</body>
+</html>
